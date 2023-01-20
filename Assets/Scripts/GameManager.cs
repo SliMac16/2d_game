@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,12 +12,24 @@ public class GameManager : MonoBehaviour
 
     GameObject current_SpawnPoint;
 
-    private bool isGameActive = true;
+    private bool isGameActive;
+    private int score = 0;
+
+    public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI timerText;
+
+    private PlayerHealth playerHealth;
 
     [SerializeField]float spawnTime = 10.0f;
+
+    private void Awake()
+    {
+        playerHealth = GameObject.Find("Player").GetComponent<PlayerHealth>();
+    }
     // Start is called before the first frame update
     void Start()
     {
+        isGameActive = true;
         StartCoroutine(SpawnEnemy());
     }
 
@@ -26,7 +41,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator SpawnEnemy()
     {
-        while (true)
+        while (isGameActive)
         {
             yield return new WaitForSeconds(spawnTime);
             int spawnIndex = Random.Range(0, spawnPoints.Length);
@@ -36,4 +51,20 @@ public class GameManager : MonoBehaviour
         }
         
     }
+
+    public void UpdateScore(int points)
+    {
+        score += points;
+        scoreText.text = "Score: " + score;
+    }
+
+    public void GameOver()
+    {
+        if(playerHealth.CheckHealth() <= 0)
+        {
+            isGameActive = false;
+        }
+    }
+
+    
 }
