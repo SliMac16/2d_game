@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] private GameObject Bullet;
     float speed = 5;
+
+    float WindowEdge = 4.50f;
 
     bool moveUp;
     bool moveDown;
@@ -19,6 +22,8 @@ public class Player : MonoBehaviour
     {
         moveUp = Input.GetKey(KeyCode.W);
         moveDown = Input.GetKey(KeyCode.S);
+
+        FireBullet();
     }
 
     private void FixedUpdate()
@@ -29,16 +34,24 @@ public class Player : MonoBehaviour
 
         Vector2 move = Vector2.zero;
 
-        if (moveUp)
+        if (moveUp && pos.y <= WindowEdge )
         {
             move.y += moveUnit;
         }
 
-        if (moveDown)
+        if (moveDown && pos.y >= -WindowEdge)
         {
             move.y -= moveUnit;
         }
         pos += move;
         transform.position = pos;
+    }
+
+    void FireBullet()
+    {
+        if (Input.GetKeyDown("space"))
+        {
+            Instantiate(Bullet, transform.position, Quaternion.identity);
+        }
     }
 }
