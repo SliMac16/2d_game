@@ -27,6 +27,7 @@ public class PlayerHealth : MonoBehaviour
             if(currentHealth <= 0)
             {
                 Destroy(gameObject);
+                FindObjectOfType<GameManager>().GetComponent<GameManager>().GameOver();
             }
         }
     }

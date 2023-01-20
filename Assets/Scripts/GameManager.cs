@@ -16,9 +16,9 @@ public class GameManager : MonoBehaviour
     private int score = 0;
 
     public TextMeshProUGUI scoreText;
-    public TextMeshProUGUI timerText;
 
     private PlayerHealth playerHealth;
+    [SerializeField]private Timer timer;
 
     [SerializeField]float spawnTime = 10.0f;
 
@@ -29,8 +29,11 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        score = 0;
+        UpdateScore(0);
         isGameActive = true;
         StartCoroutine(SpawnEnemy());
+        
     }
 
     // Update is called once per frame
@@ -60,10 +63,9 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        if(playerHealth.CheckHealth() <= 0)
-        {
-            isGameActive = false;
-        }
+        Debug.Log("Game Over");
+        isGameActive = false;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
 
     

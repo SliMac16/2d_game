@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject Bullet;
     float speed = 5;
 
-    float WindowEdge = 4.50f;
+    float WindowEdge = 7f;
 
     bool moveUp;
     bool moveDown;

@@ -27,6 +27,12 @@ public class Timer : MonoBehaviour
         if(currentTime <= 0 || playerHealth.CheckHealth() <=0)
         {
             currentTime = 0;
+            FindObjectOfType<GameManager>().GetComponent<GameManager>().GameOver();
         }
+    }
+
+    public float CheckTime()
+    {
+        return currentTime;
     }
 }
