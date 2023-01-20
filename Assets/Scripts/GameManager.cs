@@ -63,6 +63,7 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        PlayerPrefs.SetInt("LastScore", score);
         Debug.Log("Game Over");
         isGameActive = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);

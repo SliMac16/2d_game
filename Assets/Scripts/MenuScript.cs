@@ -9,9 +9,7 @@ public class MenuScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.anyKey)
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        }
+        if(Input.anyKey)
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }
