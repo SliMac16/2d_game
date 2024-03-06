@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class BackgroundLoop : MonoBehaviour
 {
-    // Start is called before the first frame update
     public float speed = 0.5f;
     
-    [SerializeField]private Renderer bgRenderer;
+    [SerializeField] Renderer bgRenderer;
    
     // Update is called once per frame
     void Update()
